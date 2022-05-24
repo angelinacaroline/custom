@@ -1,0 +1,14 @@
+<odoo>
+    <!--hanya di create saat install kalau bernilai "1"-->
+    <!--    record ini hanya di-create saat install-->
+    <record id="sequence_perpustakaan_buku_seq" model="ir.sequence">
+        <field name="name">Buku sequence</field>
+        <field name="code">perpustakaan.buku</field>
+        <field name="prefix">BOOK/%(range_year)s/</field>
+        <field eval="3" name="padding"/> <!-- eval itu untuk number, klo name untuk string-->
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+</odoo>

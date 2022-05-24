@@ -1,0 +1,78 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="mahasiswa_view_form" model="ir.ui.view">
+        <field name="name">nilai.mahasiswa.view.form</field>
+        <field name="model">nilai.mahasiswa</field>
+        <field name="arch" type="xml">
+            <form string="Mahasiswa form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <button name="action_tes" string="Tes" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nama_mhs"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="ipk"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="mahasiswa_view_list" model="ir.ui.view">
+        <field name="name">nilai.mahasiswa.view.list</field>
+        <field name="model">nilai.mahasiswa</field>
+        <field name="arch" type="xml">
+                <tree string="MahasiswaList">
+                    <field name="name"/>
+                    <field name="nama_mhs"/>
+                    <field name="status"/>
+                    <field name="ipk"/>
+                    <field name="state"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="mahasiswa_view_search" model="ir.ui.view">
+        <field name="name">nilai.mahasiswa.view.search</field>
+        <field name="model">nilai.mahasiswa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+<!--                <filter string="Score>10" name="score10_filter" domain="[('score', '>', 10)]"/>-->
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mahasiswa_action" model="ir.actions.act_window">
+        <field name="name">Mahasiswa</field>
+        <field name="res_model">nilai.mahasiswa</field>
+        <field name="view_id" ref="mahasiswa_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="score_menu" name="Score" sequence="10"/>
+    <menuitem id="nilai_menu" parent="nilai.score_menu" name="Nilai" action="mahasiswa_action" sequence="30"/>
+<!--            angka sequence dr 10 agar kalau ada perlu tiba" masih bs pake urutan sblm 10 (karena kosong)-->
+    <menuitem id="mhs_menu" parent="nilai.nilai_menu" name="Mahasiswa" action="mahasiswa_action" sequence="10"/>
+</odoo>

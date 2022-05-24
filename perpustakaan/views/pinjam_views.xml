@@ -1,0 +1,87 @@
+<odoo>
+    <record id="pinjam_view_form" model="ir.ui.view">
+        <field name="name">perpustakaan.pinjam.view.form</field>
+        <field name="model">perpustakaan.pinjam</field>
+        <field name="arch" type="xml">
+            <form string="Peminjaman form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object"
+                            class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="anggota_id"/>
+                            <field name="date"/>
+                            <field name="tgl_kembali"/>
+                        </group>
+                        <group>
+                            <field name="staff_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detail" name="detail_pinjam">
+                            <field name="detail_id">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="buku_id"/>
+                                    <field name="jumlah"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="pinjam_view_list" model="ir.ui.view">
+        <field name="name">perpustakaan.pinjam.view.list</field>
+        <field name="model">perpustakaan.pinjam</field>
+        <field name="arch" type="xml">
+            <tree string="Peminjaman List">
+                <field name="name"/>
+                <field name="anggota_id"/>
+                <field name="staff_id"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="pinjam_view_search" model="ir.ui.view">
+        <field name="name">perpustakaan.pinjam.view.search</field>
+        <field name="model">perpustakaan.pinjam</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Done" name="done_filter" domain="[('state', '=', 'done')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pinjam_action" model="ir.actions.act_window">
+        <field name="name">Transaksi Peminjaman</field>
+        <field name="res_model">perpustakaan.pinjam</field>
+        <field name="view_id" ref="pinjam_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pinjam_menu" parent="perpustakaan.perpus2_menu" name="Peminjaman" action="pinjam_action"
+              sequence="60"/>
+
+</odoo>

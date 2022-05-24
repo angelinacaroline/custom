@@ -1,0 +1,72 @@
+<odoo>
+    <record id="penerbit_view_form" model="ir.ui.view">
+        <field name="name">perpustakaan.penerbit.view.form</field>
+        <field name="model">perpustakaan.penerbit</field>
+        <field name="arch" type="xml">
+            <form string="Penerbit form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object"
+                            class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="penerbit"/>
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="telp"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="penerbit_view_list" model="ir.ui.view">
+        <field name="name">perpustakaan.penerbit.view.list</field>
+        <field name="model">perpustakaan.penerbit</field>
+        <field name="arch" type="xml">
+            <tree string="Penerbit List">
+                <field name="name"/>
+                <field name="penerbit"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="penerbit_view_search" model="ir.ui.view">
+        <field name="name">perpustakaan.penerbit.view.search</field>
+        <field name="model">perpustakaan.penerbit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Done" name="done_filter" domain="[('state', '=', 'done')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="penerbit_action" model="ir.actions.act_window">
+        <field name="name">Daftar Penerbit</field>
+        <field name="res_model">perpustakaan.penerbit</field>
+        <field name="view_id" ref="penerbit_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="penerbit_menu" parent="perpustakaan.perpus2_menu" name="Penerbit" action="penerbit_action"
+              sequence="20"/>
+
+</odoo>

@@ -1,0 +1,17 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_buku_user","Access Buku for User Sales","model_perpustakaan_buku","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_buku_admin","Access Buku for Admin","model_perpustakaan_buku","sales_team.group_sale_manager",1,1,1,1
+"access_penerbit_user","Access Penerbit for User Sales","model_perpustakaan_penerbit","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_penerbit_admin","Access Penerbit for Admin","model_perpustakaan_penerbit","sales_team.group_sale_manager",1,1,1,1
+"access_pengarang_user","Access Pengarang for User Sales","model_perpustakaan_pengarang","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_pengarang_admin","Access Pengarang for Admin","model_perpustakaan_pengarang","sales_team.group_sale_manager",1,1,1,1
+"access_staff_user","Access Staff for User Sales","model_perpustakaan_staff","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_staff_admin","Access Staff for Admin","model_perpustakaan_staff","sales_team.group_sale_manager",1,1,1,1
+"access_anggota_user","Access Anggota for User Sales","model_perpustakaan_anggota","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_anggota_admin","Access Anggota for Admin","model_perpustakaan_anggota","sales_team.group_sale_manager",1,1,1,1
+"access_pinjam_user","Access Peminjaman for User Sales","model_perpustakaan_pinjam","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_pinjam_admin","Access Peminjaman for Admin","model_perpustakaan_pinjam","sales_team.group_sale_manager",1,1,1,1
+"access_detailpinjam_user","Access Detail Peminjaman for User Sales","model_perpustakaan_detailpinjam","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_detailpinjam_admin","Access Detail Peminjaman for Admin","model_perpustakaan_detailpinjam","sales_team.group_sale_manager",1,1,1,1
+"access_kembali_user","Access Detail Kembali for User Sales","model_perpustakaan_kembali","sales_team.group_sale_salesman_all_leads",1,1,1,0
+"access_kembali_admin","Access Detail Kembali for Admin","model_perpustakaan_kembali","sales_team.group_sale_manager",1,1,1,1

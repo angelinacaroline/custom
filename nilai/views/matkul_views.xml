@@ -1,0 +1,72 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="matkul_view_form" model="ir.ui.view">
+        <field name="name">nilai.matkul.view.form</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+            <form string="Matkul form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nama_mk"/>
+                        </group>
+                        <group>
+                            <field name="sks"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="matkul_view_list" model="ir.ui.view">
+        <field name="name">nilai.matkul.view.list</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+                <tree string="MatkulList">
+                    <field name="name"/>
+                    <field name="nama_mk"/>
+                    <field name="sks"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="matkul_view_search" model="ir.ui.view">
+        <field name="name">nilai.matkul.view.search</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+<!--                <filter string="Score>10" name="score10_filter" domain="[('score', '>', 10)]"/>-->
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="matkul_action" model="ir.actions.act_window">
+        <field name="name">Mata Kuliah</field>
+        <field name="res_model">nilai.matkul</field>
+        <field name="view_id" ref="matkul_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="matkul_menu" parent="nilai.nilai_menu" name="Mata Kuliah" action="matkul_action" sequence="20"/>
+
+</odoo>
