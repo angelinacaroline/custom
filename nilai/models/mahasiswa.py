@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 #from odoo yg digunakan adalah u working directory
 #_ untuk translate
 
-class mahasiswa(models.Model): #inherit dari Model -> ini nama class sesuai python
+class pasien(models.Model): #inherit dari Model -> ini nama class sesuai python
     _name = 'nilai.mahasiswa' #attribut dari class Model (lihat dokumen odoo) Modul.Model  jadi nama tabel (ini nama class/tabel sesuai odoo), jadi kalau akses data berdasarkan nama ini
     description = 'class untuk membuat daftar mahasiswa'
     # _rec_name = 'name' #default-nya name, ini untuk memberi tahu field mana yang jadi rec_name.

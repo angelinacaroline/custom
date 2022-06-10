@@ -1,0 +1,75 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="treatment_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.treatment.view.form</field>
+        <field name="model">kecantikan.treatment</field>
+        <field name="arch" type="xml">
+            <form string="Treatment form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="kategori_id"/>
+                            <field name="nama_treat"/>
+                            <field name="harga"/>
+                        </group>
+                        <group>
+                            <field name="beautician_id"/>
+                            <field name="nama_beautician"/>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="treatment_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.treatment.view.list</field>
+        <field name="model">kecantikan.treatment</field>
+        <field name="arch" type="xml">
+                <tree string="Treatment List">
+                    <field name="name"/>
+                    <field name="nama_treat"/>
+                    <field name="harga"/>
+                    <field name="nama_beautician"/>
+                    <field name="state"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="treatment_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.treatment.view.search</field>
+        <field name="model">kecantikan.treatment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="treatment_action" model="ir.actions.act_window">
+        <field name="name">Daftar Treatment</field>
+        <field name="res_model">kecantikan.treatment</field>
+        <field name="view_id" ref="treatment_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="treatment_menu" parent="kecantikan.kecantikan2_menu" name="Treatment" action="treatment_action" sequence="60"/>
+</odoo>

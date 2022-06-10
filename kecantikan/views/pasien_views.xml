@@ -1,0 +1,78 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="pasien_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.pasien.view.form</field>
+        <field name="model">kecantikan.pasien</field>
+        <field name="arch" type="xml">
+            <form string="Pasien form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nama_pasien"/>
+                            <field name="date_lahir"/>
+                            <field name="gender" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="no_telp"/>
+                            <field name="date_gabung"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="pasien_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.pasien.view.list</field>
+        <field name="model">kecantikan.pasien</field>
+        <field name="arch" type="xml">
+                <tree string="Pasien List">
+                    <field name="name"/>
+                    <field name="nama_pasien"/>
+                    <field name="no_telp"/>
+                    <field name="date_gabung"/>
+                    <field name="state"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="pasien_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.pasien.view.search</field>
+        <field name="model">kecantikan.pasien</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date_gabung'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pasien_action" model="ir.actions.act_window">
+        <field name="name">Daftar Pelanggan</field>
+        <field name="res_model">kecantikan.pasien</field>
+        <field name="view_id" ref="pasien_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kecantikan_menu" name="Studio Kecantikan" sequence="10"/>
+    <menuitem id="kecantikan2_menu" parent="kecantikan.kecantikan_menu" name="Beranda" action="pasien_action" sequence="30"/>
+
+    <menuitem id="pasien_menu" parent="kecantikan.kecantikan2_menu" name="Pelanggan" action="pasien_action" sequence="10"/>
+</odoo>

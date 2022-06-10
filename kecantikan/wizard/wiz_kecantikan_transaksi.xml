@@ -1,0 +1,40 @@
+<odoo>
+    <record id="wiz_transaksi_view_form" model="ir.ui.view">
+        <field name="name">wiz.transaksi.view.form</field>
+        <field name="model">wiz.kecantikan.janji</field>
+        <field name="arch" type="xml">
+            <form string="Appointment form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="janji_id"/>
+                            <field name="pasien_id"/>
+                            <field name="date_janji"/>
+                            <field name="time"/>
+                        </group>
+                        <group>
+                            <field name="staff_id"/>
+                            <field name="total_harga"/>
+                        </group>
+                    </group>
+                    <notebook>
+                         <page string="Detail" name="detail_janji">
+                            <field name="detail_id">
+                                <tree create="0" delete="0" editable="bottom">
+                                    <field name="wiz_treatment_id" readonly="1"/>
+                                    <field name="wiz_nama_treatment" readonly="1"/>
+                                    <field name="wiz_harga" readonly="1"/>
+                                    <field name="wiz_nama_beautician" readonly="1"/>
+                                    <field name="djanji_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Back" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

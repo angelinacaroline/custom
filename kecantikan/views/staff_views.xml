@@ -1,0 +1,77 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="staff_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.staff.view.form</field>
+        <field name="model">kecantikan.staff</field>
+        <field name="arch" type="xml">
+            <form string="Staff form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nama_staff"/>
+                            <field name="date_lahir"/>
+                            <field name="gender" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="no_telp"/>
+                            <field name="date_gabung"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="staff_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.staff.view.list</field>
+        <field name="model">kecantikan.staff</field>
+        <field name="arch" type="xml">
+                <tree string="Staff List">
+                    <field name="name"/>
+                    <field name="nama_staff"/>
+                    <field name="no_telp"/>
+                    <field name="date_gabung"/>
+                    <field name="active"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="staff_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.staff.view.search</field>
+        <field name="model">kecantikan.staff</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date_gabung'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="staff_action" model="ir.actions.act_window">
+        <field name="name">Daftar Staff</field>
+        <field name="res_model">kecantikan.staff</field>
+        <field name="view_id" ref="staff_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="staff_menu" parent="kecantikan.kecantikan2_menu" name="Staff" action="staff_action" sequence="20"/>
+</odoo>

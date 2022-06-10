@@ -1,0 +1,78 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="beautician_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.beautician.view.form</field>
+        <field name="model">kecantikan.beautician</field>
+        <field name="arch" type="xml">
+            <form string="Beautician form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="nama_beautician"/>
+                            <field name="date_lahir"/>
+                            <field name="gender" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="no_telp"/>
+                            <field name="email"/>
+                            <field name="date_gabung"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="beautician_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.beautician.view.list</field>
+        <field name="model">kecantikan.beautician</field>
+        <field name="arch" type="xml">
+                <tree string="Beautician List">
+                    <field name="name"/>
+                    <field name="nama_beautician"/>
+                    <field name="no_telp"/>
+                    <field name="date_gabung"/>
+                    <field name="active"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="beautician_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.beautician.view.search</field>
+        <field name="model">kecantikan.beautician</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date_gabung'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="beautician_action" model="ir.actions.act_window">
+        <field name="name">Daftar Beautician</field>
+        <field name="res_model">kecantikan.beautician</field>
+        <field name="view_id" ref="beautician_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="beautician_menu" parent="kecantikan.kecantikan2_menu" name="Beautician" action="beautician_action" sequence="30"/>
+</odoo>

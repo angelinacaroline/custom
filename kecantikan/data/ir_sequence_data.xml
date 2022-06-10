@@ -1,0 +1,113 @@
+<odoo>
+    <!--hanya di create saat install kalau bernilai "1"-->
+    <!--    record ini hanya di-create saat install-->
+    <record id="sequence_kecantikan_pasien_seq" model="ir.sequence">
+        <field name="name">Pasien sequence</field>
+        <field name="code">kecantikan.pasien</field>
+        <field name="prefix">PAS</field>
+        <field eval="3" name="padding"/> <!-- eval itu untuk number, klo name untuk string-->
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_staff_seq" model="ir.sequence">
+        <field name="name">Staff sequence</field>
+        <field name="code">kecantikan.staff</field>
+        <field name="prefix">STF</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_beautician_seq" model="ir.sequence">
+        <field name="name">Beautician sequence</field>
+        <field name="code">kecantikan.beautician</field>
+        <field name="prefix">BTC</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_asisten_seq" model="ir.sequence">
+        <field name="name">Asisten sequence</field>
+        <field name="code">kecantikan.asisten</field>
+        <field name="prefix">AST</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_beautician_seq" model="ir.sequence">
+        <field name="name">Beautician sequence</field>
+        <field name="code">kecantikan.beautician</field>
+        <field name="prefix">BTC</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_asisten_seq" model="ir.sequence">
+        <field name="name">Asisten sequence</field>
+        <field name="code">kecantikan.asisten</field>
+        <field name="prefix">AST</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_kategori_seq" model="ir.sequence">
+        <field name="name">Kategori sequence</field>
+        <field name="code">kecantikan.kategori</field>
+        <field name="prefix">KTG</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_treatment_seq" model="ir.sequence">
+        <field name="name">Treatment sequence</field>
+        <field name="code">kecantikan.treatment</field>
+        <field name="prefix">TRT</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_djanji_seq" model="ir.sequence">
+        <field name="name">Detail Appointment sequence</field>
+        <field name="code">kecantikan.djanji</field>
+        <field name="prefix">DAT</field>
+        <field eval="2" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_kecantikan_transaksi_seq" model="ir.sequence">
+        <field name="name">Transaksi sequence</field>
+        <field name="code">kecantikan.transaksi</field>
+        <field name="prefix">TR</field>
+        <field eval="2" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+</odoo>

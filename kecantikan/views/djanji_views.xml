@@ -1,0 +1,68 @@
+<!--cara comment di file xml bukan # tapi ctrl+?-->
+<odoo>
+    <record id="djanji_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.djanji.view.form</field>
+        <field name="model">kecantikan.djanji</field>
+        <field name="arch" type="xml">
+            <form string="Detail Janji form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="janji_id"/>
+                            <field name="treatment_id"/>
+                            <field name="nama_treatment"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="djanji_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.djanji.view.list</field>
+        <field name="model">kecantikan.djanji</field>
+        <field name="arch" type="xml">
+                <tree string="Detai; Janji List">
+                    <field name="name"/>
+                    <field name="janji_id"/>
+                    <field name="nama_treatment"/>
+                    <field name="state"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="djanji_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.djanji.view.search</field>
+        <field name="model">kecantikan.djanji</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="djanji_action" model="ir.actions.act_window">
+        <field name="name">Daftar Detail Appointment</field>
+        <field name="res_model">kecantikan.djanji</field>
+        <field name="view_id" ref="djanji_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--<menuitem id="djanji_menu" parent="kecantikan.kecantikan2_menu" name="Detail Appointment" action="djanji_action" sequence="80"/>-->
+</odoo>

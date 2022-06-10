@@ -1,0 +1,1 @@
+from . import pasien, staff, beautician, asisten, kategori, treatment, janji, detail_janji, transaksi, inheritance

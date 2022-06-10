@@ -1,0 +1,93 @@
+<odoo>
+<!--    cara comment di file xml bukan # tapi ctrl+?-->
+    <record id="janji_view_form" model="ir.ui.view">
+        <field name="name">kecantikan.janji.view.form</field>
+        <field name="model">kecantikan.janji</field>
+        <field name="arch" type="xml">
+            <form string="Janji form">
+                <header>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="done" type="object" class="btn-primary"/>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <!--smart button-->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_wiz_djanji" type="object" string="More Details" class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="pasien_id"/>
+                            <field name="date_janji"/>
+                            <field name="time"/>
+                            <!--field name="time" widget="float_time"/-->
+                        </group>
+                        <group>
+                            <field name="staff_id"/>
+                            <!--field name="total_harga"/-->
+                            <field name="date_create"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detail Janji" name="detail_janji">
+                            <field name="detail_id">
+                                <tree>
+                                    <field name="treatment_id"/>
+                                    <field name="nama_treatment"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="janji_view_list" model="ir.ui.view">
+        <field name="name">kecantikan.janji.view.list</field>
+        <field name="model">kecantikan.janji</field>
+        <field name="arch" type="xml">
+                <tree string="Janji List">
+                    <field name="name"/>
+                    <field name="pasien_id"/>
+                    <field name="date_janji"/>
+                    <field name="time"/>
+                    <!--field name="time" widget="float_time"/-->
+                    <field name="state"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="janji_view_search" model="ir.ui.view">
+        <field name="name">kecantikan.janji.view.search</field>
+        <field name="model">kecantikan.janji</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed_filter" domain="[('state', '=', 'confirmed')]"/>
+                <separator/>
+
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="State" name="by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Date" name="by_date" context="{'group_by': 'date_janji'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="janji_action" model="ir.actions.act_window">
+        <field name="name">Daftar Appointment</field>
+        <field name="res_model">kecantikan.janji</field>
+        <field name="view_id" ref="janji_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="janji_menu" parent="kecantikan.kecantikan2_menu" name="Appointment" action="janji_action" sequence="70"/>
+</odoo>
